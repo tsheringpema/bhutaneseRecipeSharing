@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= recipe.title %> - DRUK Delights</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fffaf0;
+  color: #4a2f1c;
+  overflow-x: hidden;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  background: #fdf3e7;
+  border-bottom: 5px solid #cc7722;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #cc7722;
+  margin-right: 15px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+.nav-links a {
+  background-color: #cc7722;
+  color: white;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 8px;
+  box-shadow: 0 5px 12px rgba(204,119,34,0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 16px;
+  text-decoration: none;
+}
+.nav-links a:hover {
+  background-color: #a85d1a;
+  transform: scale(1.05);
+}
+
+
+    main.main-content {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(240, 126, 30, 0.25);
+    }
+    main h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #e85d04;
+      font-weight: 700;
+      text-align: center;
+    }
+    main p.submitted-by {
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #555;
+    }
+    main img {
+      display: block;
+      max-width: 100%;
+      margin: 0 auto 30px auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(240, 126, 30, 0.3);
+    }
+    section {
+      margin-bottom: 30px;
+    }
+    section h3 {
+      font-size: 24px;
+      border-bottom: 3px solid #f07e1e;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+      color: #d9480f;
+    }
+    section p {
+      white-space: pre-wrap;
+      font-size: 16px;
+      color: #333;
+      line-height: 1.5;
+    }
+    @media (max-width: 600px) {
+      main.main-content {
+        padding: 20px;
+        margin: 20px;
+      }
+      main h2 {
+        font-size: 28px;
+      }
+      section h3 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <img src="/img/logo.png" alt="Logo" class="logo" />
+      <h2>DRUK Delights</h2>
+    </div>
+    <div class="nav-links">
+      <a href="/" class="btn-nav">Home</a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <h2><%= recipe.title %></h2>
+    <p class="submitted-by">Submitted by: <%= recipe.user_name %></p>
+
+    <% if (recipe.image_url) { %>
+      <img src="<%= recipe.image_url %>" alt="<%= recipe.title %>" />
+    <% } %>
+
+    <section>
+      <h3>Ingredients</h3>
+      <p><%= recipe.ingredients %></p>
+    </section>
+
+    <section>
+      <h3>Instructions</h3>
+      <p><%= recipe.instructions %></p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bhutanese Recipe Sharing</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left" style="display: flex; align-items: center;">
+      <img src="/img/logo.png" alt="Logo" class="logo" />
+      <h2 style="margin-left: 15px;">DRUK Delights</h2>
+    </div>
+    <div class="nav-links">
+      <a href="/login" class="btn-login">Login</a>
+      <a href="/signup" class="btn-signup">Sign Up</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to DRUK Delights</h1>
+    <p>
+      Explore the rich culinary heritage of Bhutan through recipes shared by cooks and food lovers across the country.
+      Join our community to share your own traditional dishes and discover new favorites!
+    </p>
+    <a href="#recipes">Browse Recipes</a>
+  </section>
+
+  <!-- Info Sections: About + Why Use -->
+  <div class="info-sections">
+    <section class="info about">
+      <h2>About DRUK Delights</h2>
+      <p>
+        DRUK Delights is Bhutan’s premier recipe-sharing platform dedicated to preserving and celebrating Bhutanese cuisine.
+        From fiery Ema Datshi to hearty Phaksha Paa, we gather authentic recipes with stories and cultural context.
+      </p>
+      <a href="/signup" class="cta-btn">Join Our Community</a>
+    </section>
+
+    <section class="info why-use">
+      <h2>Explore Bhutan Through Food</h2>
+      <ul>
+        <li> Discover detailed, authentic Bhutanese recipes with photos and tips</li>
+        <li> Upload and share your own traditional recipes with others</li>
+        <li> Learn about the cultural background behind every dish</li>
+        <li> Connect with fellow food lovers and grow your cooking skills</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- Recipe Grid -->
+<main class="main-content" id="recipes">
+  <h2>Explore Traditional Dishes</h2>
+
+  <% if (recipes.length === 0) { %>
+    <p style="text-align: center;">No recipes approved yet.</p>
+  <% } else { %>
+    <div class="card-container" tabindex="0" aria-label="Recipe list. Use horizontal scroll or swipe to view more.">
+      <% recipes.forEach(recipe => { %>
+        <a href="/public/recipe/<%= recipe.id %>" style="text-decoration: none; color: inherit;">
+          <div class="card">
+            <% if (recipe.image_url) { %>
+              <img src="<%= recipe.image_url %>" alt="<%= recipe.title %>" />
+            <% } else { %>
+              <img src="/img/default.jpg" alt="Default image" />
+            <% } %>
+            <h3><%= recipe.title %></h3>
+            <p style="font-size: 14px; color: #666;">
+            <p style="color: #cc7722; font-weight: bold;">View Recipe →</p>
+          </div>
+        </a>
+      <% }); %>
+    </div>
+  <% } %>
+</main>
+
+</body>
+</html>

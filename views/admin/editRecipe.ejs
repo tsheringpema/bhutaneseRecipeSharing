@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edit Recipe - Admin | DRUK Delights</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fffaf0;
+      color: #4a2f1c;
+      overflow-x: hidden;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 40px;
+      background: #fdf3e7;
+      border-bottom: 5px solid #cc7722;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid #cc7722;
+      margin-right: 15px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      background-color: #cc7722;
+      color: white;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      box-shadow: 0 5px 12px rgba(204,119,34,0.4);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      background-color: #a85d1a;
+      transform: scale(1.05);
+    }
+
+     main {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 40px 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      font-size: 26px;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #4a2f1c;
+    }
+
+    form label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      background-color: #fffdf7;
+    }
+
+    button {
+      margin-top: 30px;
+      background-color: #cc7722;
+      color: white;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      font-size: 17px;
+      box-shadow: 0 5px 14px rgba(204, 119, 34, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #a85d1a;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 25px;
+      color: #cc7722;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background-color: #fdf3e7;
+      border-top: 3px solid #cc7722;
+      font-size: 14px;
+      color: #7a5230;
+      margin-top: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <img src="/img/logo.png" alt="Logo" class="logo" />
+      <h2>DRUK Delights</h2>
+    </div>
+    <div class="nav-links">
+      <a href="/admin/dashboard">Dashboard</a>
+      <a href="/logout">Logout</a>
+    </div>
+  </header>
+
+  <!-- Main Form Section -->
+  <main>
+    <h2>Edit Recipe</h2>
+    <form action="/admin/recipe/<%= recipe.id %>/update" method="POST">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" value="<%= recipe.title %>" required />
+
+      <label for="ingredients">Ingredients:</label>
+      <textarea name="ingredients" id="ingredients" rows="5" required><%= recipe.ingredients %></textarea>
+
+      <label for="instructions">Instructions:</label>
+      <textarea name="instructions" id="instructions" rows="5" required><%= recipe.instructions %></textarea>
+
+      <label for="image_url">Image URL:</label>
+      <input type="text" name="image_url" id="image_url" value="<%= recipe.image_url %>" />
+
+      <button type="submit">Update Recipe</button>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 DRUK Delights. All rights reserved.
+  </footer>
+
+</body>
+</html>

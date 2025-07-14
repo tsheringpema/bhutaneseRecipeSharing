@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard - DRUK Delights</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fffaf0;
+      color: #4a2f1c;
+      overflow-x: hidden;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 40px;
+      background: #fdf3e7;
+      border-bottom: 5px solid #cc7722;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid #cc7722;
+      margin-right: 15px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      background-color: #cc7722;
+      color: white;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      box-shadow: 0 5px 12px rgba(204,119,34,0.4);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      background-color: #a85d1a;
+      transform: scale(1.05);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #000000;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+      margin-top: 20px;
+      table-layout: fixed;
+      word-wrap: break-word;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      border-bottom: 1px solid #eee0cc;
+      font-size: 15px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #f4e3c5;
+      font-weight: bold;
+    }
+
+    td img {
+      width: 100px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 10px 16px;
+      margin: 4px 0;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    form[action*="approve"] button {
+      background-color: #4caf50;
+      color: white;
+      box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    }
+
+    form[action*="reject"] button {
+      background-color: #f44336;
+      color: white;
+      box-shadow: 0 4px 10px rgba(244, 67, 54, 0.3);
+    }
+
+    form[action*="edit"] button {
+      background-color: #ffa500;
+      color: white;
+      box-shadow: 0 4px 10px rgba(255, 165, 0, 0.3);
+    }
+
+    form[action*="delete"] button {
+      background-color: #d9534f;
+      color: white;
+      box-shadow: 0 4px 10px rgba(217, 83, 79, 0.3);
+    }
+
+    .status-badge {
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .status-approved {
+      background-color: #d4f4d4;
+      color: #2e7d32;
+    }
+
+    .status-rejected {
+      background-color: #ffe5e5;
+      color: #d32f2f;
+    }
+
+    .status-pending {
+      background-color: #fff5cc;
+      color: #cc7722;
+    }
+
+    .no-recipes {
+      font-size: 16px;
+      color: #888;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background-color: #fdf3e7;
+      border-top: 3px solid #cc7722;
+      font-size: 14px;
+      color: #7a5230;
+      margin-top: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <img src="/img/logo.png" alt="Logo" class="logo" />
+      <h2>DRUK Delights</h2>
+    </div>
+    <div class="nav-links">
+      <a href="/admin/dashboard"> Home </a>
+      <a href="/logout">Logout</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h2>Welcome back, Admin <%= admin.name %> 👋</h2>
+
+    <% if (recipes.length === 0) { %>
+      <p class="no-recipes">No recipes submitted yet.</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Submitted By</th>
+            <th>Status</th>
+            <th>Ingredients</th>
+            <th>Instructions</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% recipes.forEach(recipe => { %>
+            <tr>
+              <td>
+                <% if (recipe.image_url) { %>
+                  <img src="<%= recipe.image_url %>" alt="Recipe Image" />
+                <% } else { %>
+                  <em>No image</em>
+                <% } %>
+              </td>
+              <td><%= recipe.title %></td>
+              <td><%= recipe.user_name %> (<%= recipe.user_email %>)</td>
+              <td>
+                <span class="status-badge status-<%= recipe.status %>">
+                  <%= recipe.status.charAt(0).toUpperCase() + recipe.status.slice(1) %>
+                </span>
+              </td>
+              <td><%= recipe.ingredients %></td>
+              <td><%= recipe.instructions %></td>
+              <td>
+                <% if (recipe.status === 'pending' || recipe.status === 'rejected') { %>
+                  <form action="/admin/recipe/<%= recipe.id %>/approve" method="POST">
+                    <button type="submit">✅ Approve</button>
+                  </form>
+
+                  <% if (recipe.status === 'pending') { %>
+                    <form action="/admin/recipe/<%= recipe.id %>/reject" method="POST">
+                      <button type="submit">❌ Reject</button>
+                    </form>
+                  <% } %>
+
+                  <form action="/admin/recipe/<%= recipe.id %>/edit" method="GET">
+                    <button type="submit"> Edit </button>
+                  </form>
+
+                  <% if (recipe.status === 'rejected') { %>
+                    <form action="/admin/recipe/<%= recipe.id %>/delete" method="POST">
+                      <button type="submit"> Delete </button>
+                    </form>
+                  <% } %>
+
+                <% } else { %>
+                  <em>Approved</em>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </main>
+
+  <footer>
+    &copy; 2025 DRUK Delights. All rights reserved.
+  </footer>
+
+</body>
+</html>

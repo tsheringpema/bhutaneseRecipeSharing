@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup - DRUK Delights</title>
+  <style>
+   body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fffaf0;
+  color: #4a2f1c;
+  overflow-x: hidden;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  background: #fdf3e7;
+  border-bottom: 5px solid #cc7722;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #cc7722;
+  margin-right: 15px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+.nav-links a {
+  background-color: #cc7722;
+  color: white;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 8px;
+  box-shadow: 0 5px 12px rgba(204,119,34,0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 16px;
+  text-decoration: none;
+}
+.nav-links a:hover {
+  background-color: #a85d1a;
+  transform: scale(1.05);
+}
+
+    .main-content {
+      min-height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    .form-card {
+      background-color: white;
+      border-radius: 16px;
+      padding: 40px 35px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+      text-align: center;
+      color: #5c3d00;
+    }
+
+    .form-card h2 {
+      margin-bottom: 30px;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    .message {
+      margin-bottom: 20px;
+      color: #b94a4a;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #5c3d00;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #cc7722;
+      border-radius: 10px;
+      font-size: 16px;
+      color: #4a2f1c;
+      transition: border-color 0.3s ease;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #a85d1a;
+      box-shadow: 0 0 5px #a85d1a;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px 0;
+      background-color: #cc7722;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(204, 119, 34, 0.5);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .btn-submit:hover {
+      background-color: #a85d1a;
+      transform: scale(1.05);
+    }
+
+    .login-link {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #5c3d00;
+    }
+    .login-link a {
+      color: #cc7722;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .login-link a:hover {
+      color: #a85d1a;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <a href="/"><img src="/img/logo.png" alt="DRUK Delights Logo" class="logo" /></a>
+      <h2>DRUK Delights</h2>
+    </div>
+    <div class="nav-links">
+      <a href="/" class="btn-home">Home</a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="form-card">
+      <h2>Sign Up</h2>
+      <% if (message) { %>
+        <div class="message"><%= message %></div>
+      <% } %>
+      <form action="/signup" method="POST">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Full Name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Create a password" required />
+        </div>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select id="role" name="role" required>
+            <option value="user" selected>User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit">Sign Up</button>
+      </form>
+
+      <div class="login-link">
+        Already have an account? <a href="/login">Login here</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

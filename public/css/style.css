@@ -1,0 +1,229 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fffaf0;
+  color: #4a2f1c;
+  overflow-x: hidden;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  background: #fdf3e7;
+  border-bottom: 5px solid #cc7722;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #cc7722;
+  margin-right: 15px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+.nav-links a {
+  background-color: #cc7722;
+  color: white;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 8px;
+  box-shadow: 0 5px 12px rgba(204,119,34,0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 16px;
+  text-decoration: none;
+}
+.nav-links a:hover {
+  background-color: #a85d1a;
+  transform: scale(1.05);
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 70px 25px 40px;
+  background: linear-gradient(135deg, #fbe8c8 0%, #fffaf0 100%);
+  color: #5c3d00;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+}
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 12px;
+  letter-spacing: 1.2px;
+}
+.hero p {
+  font-size: 20px;
+  max-width: 700px;
+  margin: 0 auto 25px;
+  line-height: 1.5;
+}
+.hero a {
+  background-color: #cc7722;
+  padding: 16px 36px;
+  font-size: 18px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 6px 15px rgba(204,119,34,0.5);
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+.hero a:hover {
+  background-color: #a85d1a;
+}
+
+/* Info Sections */
+.info-sections {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 70px auto;
+  gap: 50px;
+  padding: 0 25px;
+}
+section.info {
+  flex: 1 1 480px;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+section.info h2 {
+  font-size: 32px;
+  margin-bottom: 18px;
+  color: #5c3d00;
+  letter-spacing: 1px;
+}
+section.info p, section.info ul {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #4a2f1c;
+}
+section.info ul {
+  padding-left: 20px;
+}
+section.info ul li {
+  margin-bottom: 12px;
+  position: relative;
+  padding-left: 28px;
+}
+section.info ul li::before {
+  content: "🍽️";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 18px;
+}
+.info .cta-btn {
+  display: inline-block;
+  margin-top: 25px;
+  background-color: #cc7722;
+  color: white;
+  padding: 14px 32px;
+  font-weight: 700;
+  border-radius: 10px;
+  box-shadow: 0 5px 12px rgba(204,119,34,0.4);
+  transition: background-color 0.3s ease;
+}
+.info .cta-btn:hover {
+  background-color: #a85d1a;
+}
+
+/* Recipe Section */
+main#recipes {
+  max-width: 1100px;
+  margin: 0 auto 80px;
+  padding: 20px 25px;
+}
+main#recipes h2 {
+  text-align: center;
+  color: #5c3d00;
+  font-size: 36px;
+  margin-bottom: 40px;
+  letter-spacing: 1.1px;
+}
+
+/* Cards container */
+.card-container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 15px;
+  -webkit-overflow-scrolling: touch;
+}
+.card-container::-webkit-scrollbar {
+  height: 8px;
+}
+.card-container::-webkit-scrollbar-thumb {
+  background-color: #cc7722;
+  border-radius: 10px;
+}
+
+/* Cards */
+.card {
+  flex: 0 0 320px;
+  background: white;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+  scroll-snap-align: start;
+  cursor: pointer;
+  overflow: hidden;
+  user-select: none;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+.card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-bottom: 2px solid #cc7722;
+  transition: transform 0.5s ease;
+}
+.card:hover img {
+  transform: scale(1.1);
+}
+.card h3 {
+  font-size: 22px;
+  color: #5c3d00;
+  padding: 18px 60px;
+  text-align: center;
+  margin: 0;
+  user-select: text;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(25px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 880px) {
+  .info-sections {
+    flex-direction: column;
+    margin: 40px auto;
+    gap: 40px;
+  }
+  .card-container {
+    gap: 20px;
+  }
+}
