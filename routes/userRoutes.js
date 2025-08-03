@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const userController = require('../controllers/UserController');
 const jwt = require('jsonwebtoken');
 
 // Middleware to check if user is logged in
