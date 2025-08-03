@@ -111,7 +111,7 @@ exports.postLogin = async (req, res) => {
         res.cookie('token', token, {
             httpOnly: true,
             maxAge: 3600000, // 1 hour
-            secure: false,
+            secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
         });
 
