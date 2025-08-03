@@ -1,6 +1,6 @@
 const recipeModel = require('../models/recipeModel');
 
-// GET /user/dashboard
+// GET user dashboard
 exports.getDashboard = async (req, res) => {
     const user = req.user;
     try {
@@ -12,12 +12,12 @@ exports.getDashboard = async (req, res) => {
     }
 };
 
-// GET /user/add-recipe
+// GET user add-recipe
 exports.getAddRecipe = (req, res) => {
     res.render('user/addRecipe', { user: req.user, message: null });
 };
 
-// POST /user/add-recipe
+// POST user add-recipe
 exports.postAddRecipe = async (req, res) => {
     const { title, ingredients, instructions, image_url } = req.body;
     const userId = req.user.id;
@@ -32,7 +32,7 @@ exports.postAddRecipe = async (req, res) => {
     }
 };
 
-// GET /user/edit-recipe/:id
+// GET user edit-recipe :id
 exports.getEditRecipe = async (req, res) => {
   const recipeId = req.params.id;
   const user = req.user;
